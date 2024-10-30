@@ -73,10 +73,10 @@ const machinesWithDistance = computed(() => {
           <div class="w-full">
             <ProgressBar 
               :value="Math.round((data.currentFill / data.capacity) * 100)"
-              :class="{
-                'bg-green-100': data.currentFill / data.capacity < 0.7,
-                'bg-yellow-100': data.currentFill / data.capacity >= 0.7 && data.currentFill / data.capacity < 0.9,
-                'bg-red-100': data.currentFill / data.capacity >= 0.9
+              :pt:value:class="{
+                'bg-green-400': data.currentFill / data.capacity < 0.7,
+                'bg-yellow-400': data.currentFill / data.capacity >= 0.7 && data.currentFill / data.capacity < 0.9,
+                'bg-red-400': data.currentFill / data.capacity >= 0.9
               }"
             />
           </div>
@@ -85,17 +85,3 @@ const machinesWithDistance = computed(() => {
     </DataTable>
   </div>
 </template>
-
-<style scoped>
-:deep(.p-datatable) {
-  background: white;
-}
-
-:deep(.p-datatable .p-datatable-thead > tr > th) {
-  background: #f8fafc;
-}
-
-:deep(.p-progressbar) {
-  height: 0.75rem;
-}
-</style>

@@ -4,6 +4,7 @@ import { LMap, LTileLayer, LMarker, LPopup, LCircle } from '@vue-leaflet/vue-lea
 import { useRVMStore } from '../stores/rvmStore'
 import { calculateDistance } from '../utils/distance'
 import { PointTuple } from 'leaflet';
+import Button from 'primevue/button';
 
 const store = useRVMStore()
 const zoom = ref(13)
@@ -45,7 +46,9 @@ onMounted(async () => {
                   machine.location.lng
                 ).toFixed(1) 
               }} km
+              <Button icon="pi pi-directions" aria-label="Navigate" />
             </p>
+
           </div>
         </l-popup>
       </l-marker>
