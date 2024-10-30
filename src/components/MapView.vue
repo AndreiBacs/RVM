@@ -3,11 +3,11 @@ import { onMounted, ref } from 'vue'
 import { LMap, LTileLayer, LMarker, LPopup, LCircle } from '@vue-leaflet/vue-leaflet'
 import { useRVMStore } from '../stores/rvmStore'
 import { calculateDistance } from '../utils/distance'
-import Button from 'primevue/button'
+import { PointTuple } from 'leaflet';
 
 const store = useRVMStore()
 const zoom = ref(13)
-const center = ref([46.7712, 23.6236]) // Centered on Cluj-Napoca
+const center = ref([46.7712, 23.6236] as PointTuple) // Centered on Cluj-Napoca
 
 onMounted(async () => {
   await store.fetchMachines()

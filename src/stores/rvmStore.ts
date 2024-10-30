@@ -78,7 +78,7 @@ export const useRVMStore = defineStore('rvm', {
           status: 'maintenance',
           lastMaintenance: '2024-03-12',
           capacity: 1000,
-          currentFill: 789
+          currentFill: 950
         }
       ] as RVM[]
     },
