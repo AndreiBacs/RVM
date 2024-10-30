@@ -12,6 +12,13 @@ const store = useRVMStore()
 const zoom = ref(13)
 const center = ref([46.7712, 23.6236] as PointTuple) // Centered on Cluj-Napoca
 
+
+const navigate =()=>{
+  const googleMapsUrl = `https://www.google.com/maps?q=${store.selectedMachine?.location.lat},${store.selectedMachine?.location.lng}`;
+      // Open the URL in a new tab
+  window.open(googleMapsUrl, '_blank');
+}
+
 onMounted(async () => {
   await store.fetchMachines()
   await store.getUserLocation()
@@ -19,6 +26,7 @@ onMounted(async () => {
     center.value = [store.userLocation.lat, store.userLocation.lng]
   }
 })
+
 </script>
 
 <template>
@@ -51,7 +59,7 @@ onMounted(async () => {
                   machine.location.lng
                 ).toFixed(1) 
               }} km
-              <Button icon="pi pi-directions" aria-label="Navigate" />
+              <Button icon="pi pi-directions" aria-label="Navigate" @click="navigate()" />
             </p>
 
           </div>
