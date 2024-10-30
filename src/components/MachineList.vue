@@ -2,6 +2,7 @@
 import { onMounted, computed } from 'vue'
 import { useRVMStore } from '../stores/rvmStore'
 import { calculateDistance } from '../utils/distance'
+import { getSeverity} from '../utils/statusSeverity'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Tag from 'primevue/tag'
@@ -14,19 +15,6 @@ onMounted(async () => {
     await store.getUserLocation()
   }
 })
-
-const getSeverity = (status: string) => {
-  switch (status) {
-    case 'operational':
-      return 'success'
-    case 'maintenance':
-      return 'warning'
-    case 'offline':
-      return 'danger'
-    default:
-      return 'info'
-  }
-}
 
 const machinesWithDistance = computed(() => {
   return store.sortedByDistance.map(machine => ({

@@ -3,8 +3,10 @@ import { onMounted, ref } from 'vue'
 import { LMap, LTileLayer, LMarker, LPopup, LCircle } from '@vue-leaflet/vue-leaflet'
 import { useRVMStore } from '../stores/rvmStore'
 import { calculateDistance } from '../utils/distance'
+import { getSeverity} from '../utils/statusSeverity'
 import { PointTuple } from 'leaflet';
 import Button from 'primevue/button';
+import Tag from 'primevue/tag';
 
 const store = useRVMStore()
 const zoom = ref(13)
@@ -36,7 +38,10 @@ onMounted(async () => {
         <l-popup>
           <div class="p-2">
             <h3 class="font-bold">{{ machine.address }}</h3>
-            <p class="text-sm">Status: {{ machine.status }}</p>
+            <p class="text-sm">Status: 
+              <Tag :value="machine.status" :severity="getSeverity(machine.status)" />
+            </p>
+
             <p v-if="store.userLocation" class="text-sm">
               Distance: {{ 
                 calculateDistance(
